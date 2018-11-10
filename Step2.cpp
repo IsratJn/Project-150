@@ -25,16 +25,16 @@ using namespace sf;
     const double Obs5Y=490;
     const double Obs6X=1100;
     const double Obs6Y=490;*/
-    const double Candy1X=200;
-    const double Candy1Y=200;
-    const double Candy2X=400;
-    const double Candy2Y=200;
-    const double Candy3X=600;
-    const double Candy3Y=200;
-    const double Candy4X=800;
-    const double Candy4Y=200;
-    const double Candy5X=1000;
-    const double Candy5Y=200;
+    const double Candy1X=100;
+    const double Candy1Y=160;
+    const double Candy2X=200;
+    const double Candy2Y=190;
+    const double Candy3X=500;
+    const double Candy3Y=350;
+    const double Candy4X=700;
+    const double Candy4Y=150;
+    const double Candy5X=900;
+    const double Candy5Y=300;
 RenderWindow app(VideoMode(SCREEN_WIDTH, SCREEN_HEIGH), "Mission moon");
 
 //Creat random Number for game loop
@@ -167,23 +167,7 @@ Candy5.setPosition(Candy5X,Candy5Y);
        Obs6.move(-1,0) ;
 
     }*/
-    int ground=450;
 
-        if(jumping){
-            Racer.move(0,Yvelocity);
-            Yvelocity++;
-            y += Yvelocity;
-            if(Yvelocity > 20) Yvelocity = -20;
-        }
-        //cout << "a=" << a << " b=" << b << " ground=" << gr << endl;
-
-        if(Racer.getPosition().y >= ground && jumping) {
-            jumping = false;
-            Racer.setPosition(Racer.getPosition().x, ground);
-   if (Keyboard::isKeyPressed(Keyboard::Up)){
-                jumping = true;
-                //sball.move(0.f,-8.f);
-            }
  if(sf::Keyboard::isKeyPressed(sf::Keyboard::Right))
     {
        Racer.move(4,0) ;
@@ -193,10 +177,28 @@ Candy5.setPosition(Candy5X,Candy5Y);
     if(counterWalking==8){
        counterWalking=0;
     }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
+    {
+       Racer.move(-4,0) ;
+       Racer.setTextureRect(sf::IntRect(counterWalking*200,0,200,197));
+    }
+    counterWalking++;
+    if(counterWalking==8){
+       counterWalking=0;
+    }
 
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Up))
     {
-       Racer.move(0,-16) ;
+       Racer.move(0,-4) ;
+       Racer.setTextureRect(sf::IntRect(counterWalking*200,0,200,197));
+    }
+    counterWalking++;
+    if(counterWalking==8){
+       counterWalking=0;
+    }
+     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Down))
+    {
+       Racer.move(0,4) ;
        Racer.setTextureRect(sf::IntRect(counterWalking*200,0,200,197));
     }
     counterWalking++;
@@ -226,4 +228,4 @@ Candy5.setPosition(Candy5X,Candy5Y);
     }
     return EXIT_SUCCESS;
 }
-}
+
